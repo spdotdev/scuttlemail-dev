@@ -19,7 +19,7 @@ site. Same pattern as `scuttle-dev` and `splotnikov-dev`.
 - `src/ScuttlemailDevServiceProvider.php`: auto-discovered; loads routes + views, publishes config.
 - `routes/web.php`: `Route::domain(config('scuttlemail-dev.domain'))` group: `/`, `/robots.txt`, `/sitemap.xml`.
 - `resources/views/site.blade.php`: the whole page (centered name, one sentence, contact link,
-  info@scuttle.dev, privacy link to scuttle.dev/privacy, light and dark theme with a toggle).
+  privacy link to scuttle.dev/privacy, light and dark theme with a toggle).
 - `config/scuttlemail-dev.php`: `domain` via `SCUTTLEMAIL_DOMAIN`.
 - `docs/DNS-AND-MAIL-SETUP.md`: the mailbox and DNS plan for the domain.
 

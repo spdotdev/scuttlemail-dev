@@ -15,12 +15,22 @@ class SiteTest extends TestCase
             ->assertSee('Scuttle Development builds and secures software for businesses');
     }
 
-    public function test_homepage_links_to_the_scuttle_dev_contact_privacy_and_email(): void
+    public function test_homepage_links_to_the_scuttle_dev_contact_and_privacy_pages_only(): void
     {
         $this->get('http://scuttlemail.dev/')
             ->assertSee('href="https://scuttle.dev/#contact"', false)
             ->assertSee('href="https://scuttle.dev/privacy"', false)
-            ->assertSee('href="mailto:info@scuttle.dev"', false);
+            ->assertDontSee('mailto:', false)
+            ->assertDontSee('info@scuttle.dev');
+    }
+
+    public function test_homepage_is_responsive_and_theme_toggle_is_an_icon(): void
+    {
+        $this->get('http://scuttlemail.dev/')
+            ->assertSee('name="viewport" content="width=device-width, initial-scale=1.0"', false)
+            ->assertSee('class="icon-moon"', false)
+            ->assertSee('class="icon-sun"', false)
+            ->assertSee('aria-label="Toggle light and dark theme"', false);
     }
 
     public function test_homepage_has_light_and_dark_theme_support(): void
