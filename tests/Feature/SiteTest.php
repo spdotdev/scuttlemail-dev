@@ -76,4 +76,18 @@ class SiteTest extends TestCase
             ->assertSee('<urlset', false)
             ->assertSee('https://scuttlemail.dev/', false);
     }
+
+    public function test_www_redirects_permanently_to_the_bare_domain(): void
+    {
+        $this->get('http://www.scuttlemail.dev/')
+            ->assertStatus(301)
+            ->assertRedirect('https://scuttlemail.dev/');
+    }
+
+    public function test_www_redirect_keeps_the_path_and_query(): void
+    {
+        $this->get('http://www.scuttlemail.dev/robots.txt?a=1')
+            ->assertStatus(301)
+            ->assertRedirect('https://scuttlemail.dev/robots.txt?a=1');
+    }
 }
