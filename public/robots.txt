@@ -1,0 +1,7 @@
+# Scuttle Development - robots.txt
+# https://scuttlemail.dev
+
+User-agent: *
+Allow: /
+
+Sitemap: https://scuttlemail.dev/sitemap.xml

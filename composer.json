@@ -1,0 +1,43 @@
+{
+    "name": "spdotdev/scuttlemail-dev",
+    "description": "scuttlemail.dev site, packaged as a Laravel library for a host app.",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.27",
+        "orchestra/testbench": "^11.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spdotdev\\ScuttlemailDev\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spdotdev\\ScuttlemailDev\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "@php vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Spdotdev\\ScuttlemailDev\\ScuttlemailDevServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
