@@ -33,8 +33,7 @@ No KvK number on the page. No opt-out or "why you got this email" line. Keep it 
 Built and tested locally, not deployed. Deploy steps: tag v0.1.0, add `spdotdev/scuttlemail-dev`
 to sd-admin `composer.json` (repositories + require) and bump the lock, add `scuttlemail.dev`
 (and a `www` redirect) to `caddy_sites` in d0-admin and the live Caddyfile on d051, set
-`SCUTTLEMAIL_DOMAIN` if it differs. DNS A record already points at d051. Deploying to production
-needs Stas's explicit go.
+`SCUTTLEMAIL_DOMAIN` if it differs. DNS A record already points at d051. Once merged to main it follows the Deploy rule below.
 
 ## Deploy (set 2026-10-13, HARD RULE, user decision)
 Production on d051 always runs the latest `main` of this project. When the user asks for a change and it is merged to main, deploy it yourself right away, without asking: push or merge, watch CI and the deploy to the end, and check the server runs that commit. If this project uses tags, deploy the latest tag every time. Anything not in main is local testing and is never deployed. A failing deploy is reported first as broken, with what it blocks. Never open PRs unless asked.
