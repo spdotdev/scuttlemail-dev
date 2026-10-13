@@ -35,3 +35,6 @@ to sd-admin `composer.json` (repositories + require) and bump the lock, add `scu
 (and a `www` redirect) to `caddy_sites` in d0-admin and the live Caddyfile on d051, set
 `SCUTTLEMAIL_DOMAIN` if it differs. DNS A record already points at d051. Deploying to production
 needs Stas's explicit go.
+
+## Deploy (set 2026-10-13, HARD RULE, user decision)
+Production on d051 always runs the latest `main` of this project. When the user asks for a change and it is merged to main, deploy it yourself right away, without asking: push or merge, watch CI and the deploy to the end, and check the server runs that commit. If this project uses tags, deploy the latest tag every time. Anything not in main is local testing and is never deployed. A failing deploy is reported first as broken, with what it blocks. Never open PRs unless asked.
