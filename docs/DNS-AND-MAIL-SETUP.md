@@ -9,8 +9,10 @@ Decisions (Stas, 2026-10-12):
 - Start with **2 mailboxes**. A third is added only if the domain looks healthy.
 - Warm-up ramp per mailbox: 15, 25, 35, 50 sends a day, one step **every 3 days**, set per
   email account in sd-crm (field "Warm-up step (days)"), not as a global setting.
-- Mailboxes: `stas@scuttlemail.dev` and `sp@scuttlemail.dev`. Real-looking personal names,
-  because the outreach text is written in the first person; no generic `info@` or `hello@`.
+- Mailboxes (changed 2026-10-13): `sp.dev@scuttlemail.dev` (the sign-up user) and
+  `sp.mail@scuttlemail.dev`. The names hint at the initials SP without being a real name,
+  are longer than four letters and have no numbers; no generic `info@` or `hello@`.
+- Contact and recovery address of the new account: scuttledev@gmail.com.
 - The website is this package, served from d051 behind Caddy.
 
 ## Where DNS lives
@@ -38,7 +40,7 @@ Workspace setup, copy them exactly.
 | 3 | MX | `@` | priority 1, `smtp.google.com.` | Same single MX scuttle.dev uses today. Check what the Workspace setup shows and match it. |
 | 4 | TXT | `@` | `v=spf1 include:_spf.google.com ~all` | One SPF record only. Never add a second TXT starting with v=spf1. |
 | 5 | TXT | `google._domainkey` | from Google (2048-bit key) | Admin console, Apps, Google Workspace, Gmail, Authenticate email, Generate new record, then press Start authentication after the DNS record is live. Long keys may need splitting into two quoted strings; the registrar form usually handles it. |
-| 6 | TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:stas@scuttlemail.dev` | Start at `p=none`. Move to `quarantine` after about 3 weeks of clean reports. |
+| 6 | TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:sp.dev@scuttlemail.dev` | Start at `p=none`. Move to `quarantine` after about 3 weeks of clean reports. |
 | 7 | TXT | `@` | Postmaster Tools verification (from Google) | Only if you set up Postmaster Tools, see below. |
 
 Do not publish the MX record before the mailboxes exist, or mail to the domain
@@ -49,7 +51,7 @@ bounces. Do not add `p=reject` early.
 1. Sign up for a **new** Google Workspace account (Business Starter is enough)
    with domain scuttlemail.dev. Use a different admin from the scuttle.dev account.
 2. Add record 2, verify the domain in the Admin console.
-3. Create the two mailboxes: `stas@scuttlemail.dev` and `sp@scuttlemail.dev`.
+3. Create the two mailboxes: `sp.dev@scuttlemail.dev` (sign-up user) and `sp.mail@scuttlemail.dev`.
 4. Add records 3 and 4, wait until `host -t MX scuttlemail.dev` shows Google.
 5. Generate the DKIM key, add record 5, press Start authentication.
 6. Add record 6.
